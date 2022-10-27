@@ -1,0 +1,15 @@
+$primary: #f7373e;
+$secondary:#350d34;
+header {
+    display: flex;
+    align-items: center;
+    padding: 20px 10px;
+    background: #e6e6e6;
+    font-size: 1.6rem;
+    background: $primary;
+    color:$secondary;
+
+    img{
+        margin-right: 10px;
+    }
+}

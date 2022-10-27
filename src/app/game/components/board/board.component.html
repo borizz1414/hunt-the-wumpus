@@ -1,0 +1,32 @@
+<div class="cells-container">
+    <div class="cells" #heightCells>
+        <div class="cell" *ngFor="let i of cells">
+            <div class="exit" *ngIf="i === 1">salida
+                <hr>
+                <div class="hunter" #hunter>
+                    <img src="https://cdn141.picsart.com/331972523044211.png" width="60px" alt="">
+                </div>
+            </div>
+            <div class="gold" *ngIf="i === gold"><img src="https://cdn-icons-png.flaticon.com/512/3309/3309977.png"
+                    width="40px" alt=""></div>
+            <div class="gold" *ngIf="i === wumpus"><img
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Wumpus.svg/1240px-Wumpus.svg.png"
+                    width="40px" alt=""></div>
+            <div class="stenchs" *ngFor="let s of  [0,1,2,3];index as e;">
+                <div class="stench" *ngIf="i === stench[e]"><img
+                        src="https://static.vecteezy.com/system/resources/previews/003/251/563/original/smelling-green-cartoon-fart-cloud-flat-style-design-vector.jpg"
+                        width="40px" alt=""></div>
+            </div>
+            <div class="brightness" *ngFor="let s of  [0,1,2,3];index as e;">
+                <div class="brightness" *ngIf="i === brightness[e]"><img
+                        src="https://images.vexels.com/media/users/3/206953/isolated/preview/bde53266b1bfbf4832b5cbd1e88b275a-icono-colorido-de-estrellas-de-brillo-limpio.png"
+                        width="20px" alt=""></div>
+            </div>
+
+        </div>
+    </div>
+</div>
+celdas:{{cells}}<br>
+flechas:{{arrows}}<br>
+pozos: {{pits}}<br>
+gold: {{gold}}

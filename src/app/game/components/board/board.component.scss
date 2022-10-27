@@ -1,0 +1,20 @@
+.cells-container {
+  display: flex;
+  justify-content: center;
+  .cells {
+    margin-top: 100px;
+    width: 320px;
+    display: flex;
+    flex-wrap: wrap;
+    .cell {
+      width: 80px;
+      height: 80px;
+      position: relative;
+      border: 1px solid black;
+
+      .hunter{
+        position: absolute;
+      }
+    }
+  }
+}
