@@ -1,19 +1,19 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { SettinsGameInterface } from '@app/game/interfaces/game.interface';
+import { SettingsGameInterface } from '@app/game/interfaces/game.interface';
 @Injectable()
 export class GameState {
-  private settings = new BehaviorSubject<SettinsGameInterface>({} as SettinsGameInterface);
+  private settings = new BehaviorSubject<SettingsGameInterface>({} as SettingsGameInterface);
 
-  get settingsValue(): SettinsGameInterface {
+  get settingsValue(): SettingsGameInterface {
     return this.settings.value;
   }
 
-  setSettingsValue(settings: SettinsGameInterface): void {
+  setSettingsValue(settings: SettingsGameInterface): void {
     this.settings.next(settings);
   }
 
-  getSettingsValue(): Observable<SettinsGameInterface> {
+  getSettingsValue(): Observable<SettingsGameInterface> {
     return this.settings.asObservable();
   }
 }

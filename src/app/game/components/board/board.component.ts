@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnDestroy, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { SettinsGameInterface } from '@app/game/interfaces/game.interface';
+import { SettingsGameInterface } from '@app/game/interfaces/game.interface';
 import { GameService } from '@app/game/services/game.service';
 import { fromEvent, Subscription, tap } from 'rxjs';
 import { distinctUntilChanged } from 'rxjs/operators';
@@ -36,7 +36,7 @@ export class BoardComponent implements OnInit, OnDestroy {
 
 
   getSettings(): Subscription {
-    return this.gameService.getSettings().pipe(tap((res: SettinsGameInterface) => {
+    return this.gameService.getSettings().pipe(tap((res: SettingsGameInterface) => {
       for (let i = 1; i <= res.cells; i++) {
         this.cells?.push(i);
       }
@@ -57,7 +57,7 @@ export class BoardComponent implements OnInit, OnDestroy {
           this.breeze.push(this.pit - 1, this.pit + 1);
         }
       }
-    })).subscribe((res: SettinsGameInterface) => {
+    })).subscribe((res: SettingsGameInterface) => {
       this.arrows = res.arrows;
     })
   }

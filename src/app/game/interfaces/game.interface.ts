@@ -1,4 +1,4 @@
-export interface SettinsGameInterface {
+export interface SettingsGameInterface {
     cells: number;
     pits: number;
     arrows: number;
