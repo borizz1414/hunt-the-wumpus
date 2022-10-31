@@ -47,13 +47,13 @@
                             width="40px" alt=""></div>
                     <div class="stenchs" *ngFor="let item of  [0,1,2,3];index as i;">
                         <div class="stench"
-                            *ngIf="cell === stench[i] && stench[i] !== wumpus && stench[i] !== gold && pits.indexOf(cell) < 0">
+                            *ngIf="cell === stench[i] && stench[i] !== wumpus && stench[i] !== gold && pits.indexOf(cell) < 0 && cell !== 1">
                             <img src="https://cdn-icons-png.flaticon.com/512/6930/6930335.png" width="30px" alt="">
                         </div>
                     </div>
                     <div class="brightness" *ngFor="let item of  [0,1,2,3];index as i;">
                         <div class="brightness"
-                            *ngIf="cell === brightness[i] && brightness[i] !== wumpus && brightness[i] !== gold && pits.indexOf(cell) < 0">
+                            *ngIf="cell === brightness[i] && brightness[i] !== wumpus && brightness[i] !== gold && pits.indexOf(cell) < 0 && cell !== 1">
                             <img src="https://images.vexels.com/media/users/3/206953/isolated/preview/bde53266b1bfbf4832b5cbd1e88b275a-icono-colorido-de-estrellas-de-brillo-limpio.png"
                                 width="30px" alt="">
                         </div>
@@ -63,7 +63,7 @@
                             width="30px" alt="">
                     </div>
                     <div class="breeze"
-                        *ngIf="breeze.indexOf(cell) >= 0 && pits.indexOf(cell) < 0 && cell !== wumpus && cell !== gold">
+                        *ngIf="breeze.indexOf(cell) >= 0 && pits.indexOf(cell) < 0 && cell !== wumpus && cell !== gold && cell !== 1">
                         <img src="https://cdn-icons-png.flaticon.com/512/809/809188.png" width="30px" alt="">
                     </div>
                 </div>
