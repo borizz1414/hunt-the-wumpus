@@ -28,7 +28,7 @@ export class SettingsComponent implements OnInit {
   start() {
     if (this.settingsForm.value.pits >= this.settingsForm.value.cells) {
       this.alertMessage = '¡El número de pozos debe ser menor que el de celdas!'
-      setTimeout(() => this.alertMessage ='',5000)
+      setTimeout(() => this.alertMessage = '', 5000)
     } else {
       this.gameService.setSettings(this.settingsForm.value);
       this.router.navigate(['/play'])
