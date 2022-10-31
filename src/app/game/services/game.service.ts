@@ -11,6 +11,7 @@ export class GameService {
   constructor(private gameState: GameState) { }
 
   setSettings(settings: SettinsGameInterface): void {
+    localStorage.setItem('config', JSON.stringify(settings));
     this.gameState.setSettingsValue(settings);
   }
 

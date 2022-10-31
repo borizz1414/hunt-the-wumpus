@@ -1,32 +1,85 @@
-<div class="cells-container">
-    <div class="cells" #heightCells>
-        <div class="cell" *ngFor="let i of cells">
-            <div class="exit" *ngIf="i === 1">salida
-                <hr>
-                <div class="hunter" #hunter>
-                    <img src="https://cdn141.picsart.com/331972523044211.png" width="60px" alt="">
-                </div>
-            </div>
-            <div class="gold" *ngIf="i === gold"><img src="https://cdn-icons-png.flaticon.com/512/3309/3309977.png"
-                    width="40px" alt=""></div>
-            <div class="gold" *ngIf="i === wumpus"><img
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Wumpus.svg/1240px-Wumpus.svg.png"
-                    width="40px" alt=""></div>
-            <div class="stenchs" *ngFor="let s of  [0,1,2,3];index as e;">
-                <div class="stench" *ngIf="i === stench[e]"><img
-                        src="https://static.vecteezy.com/system/resources/previews/003/251/563/original/smelling-green-cartoon-fart-cloud-flat-style-design-vector.jpg"
-                        width="40px" alt=""></div>
-            </div>
-            <div class="brightness" *ngFor="let s of  [0,1,2,3];index as e;">
-                <div class="brightness" *ngIf="i === brightness[e]"><img
-                        src="https://images.vexels.com/media/users/3/206953/isolated/preview/bde53266b1bfbf4832b5cbd1e88b275a-icono-colorido-de-estrellas-de-brillo-limpio.png"
-                        width="20px" alt=""></div>
-            </div>
-
-        </div>
+<div class="result-message">
+    <h1>{{resultMessage}} </h1><br>
+    <div class="actions" *ngIf="finish">
+        <button (click)="resetGame()">Reiniciar juego</button> <br>
+        <button routerLink="/start-game">Ir al inicio</button> <br>
     </div>
 </div>
-celdas:{{cells}}<br>
-flechas:{{arrows}}<br>
-pozos: {{pits}}<br>
-gold: {{gold}}
+<div class="container" data-cy="board-game">
+    <div class="info" data-cy="info-game">
+        <h3>Información</h3>
+        <br>
+        <div class="references">
+            <img src="https://static.vecteezy.com/system/resources/previews/001/186/969/non_2x/archer-png.png"
+                width="30px" alt=""> Cazador: Tu. <br>
+            <img src="https://cdn-icons-png.flaticon.com/512/6930/6930335.png" width="30px" alt=""> Hedor: El wumpus
+            esta cerca. <br>
+            <img src="https://cdn-icons-png.flaticon.com/512/809/809188.png" width="30px" alt=""> Brisa: Un pozo sin
+            fondo esta cerca. <br>
+            <img src="https://icones.pro/wp-content/uploads/2021/04/icone-cercle-rempli-noir.png" width="30px" alt="">
+            Pozo: Si llegas a un pozo estas muerto. <br>
+            <img src="https://images.vexels.com/media/users/3/206953/isolated/preview/bde53266b1bfbf4832b5cbd1e88b275a-icono-colorido-de-estrellas-de-brillo-limpio.png"
+                width="30px" alt=""> Brillo: El Oro esta cerca. <br>
+            <img src="https://cdn-icons-png.flaticon.com/512/3309/3309977.png" width="30px" alt=""> Oro: Recogelo y ve a
+            la salida para ganar. <br>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Wumpus.svg/1230px-Wumpus.svg.png"
+                width="30px" alt=""> Wumpus: Lo matas o te mata.<br>
+        </div>
+    </div>
+    <div class="cells-container" data-cy="cells-game">
+        <div class="cells" #heightCells>
+            <div class="cell" *ngFor="let cell of cells;let i = index" (click)="selectCell(cell)">
+                <div class="exit" *ngIf="cell === 1">salida
+                    <hr>
+                    <div class="hunter" #hunter>
+                        <img src="https://static.vecteezy.com/system/resources/previews/001/186/969/non_2x/archer-png.png"
+                            width="30px" alt="">
+                    </div>
+                </div>
+                <div class="cell-content" *ngIf="cell === hunterPosition">
+                    <div class="gold" *ngIf="cell === gold && !goldCollected" (click)="collectGold()">
+                        <img src="https://cdn-icons-png.flaticon.com/512/3309/3309977.png" width="50px"
+                            alt="Recoger oro">
+                    </div>
+                    <div class="wumpus" *ngIf="cell === wumpus && !deadWumpus"><img
+                            src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Wumpus.svg/1230px-Wumpus.svg.png"
+                            width="40px" alt=""></div>
+                    <div class="stenchs" *ngFor="let item of  [0,1,2,3];index as i;">
+                        <div class="stench"
+                            *ngIf="cell === stench[i] && stench[i] !== wumpus && stench[i] !== gold && pits.indexOf(cell) < 0">
+                            <img src="https://cdn-icons-png.flaticon.com/512/6930/6930335.png" width="30px" alt="">
+                        </div>
+                    </div>
+                    <div class="brightness" *ngFor="let item of  [0,1,2,3];index as i;">
+                        <div class="brightness"
+                            *ngIf="cell === brightness[i] && brightness[i] !== wumpus && brightness[i] !== gold && pits.indexOf(cell) < 0">
+                            <img src="https://images.vexels.com/media/users/3/206953/isolated/preview/bde53266b1bfbf4832b5cbd1e88b275a-icono-colorido-de-estrellas-de-brillo-limpio.png"
+                                width="30px" alt="">
+                        </div>
+                    </div>
+                    <div class="pits" *ngIf="pits.indexOf(cell) >= 0">
+                        <img src="https://icones.pro/wp-content/uploads/2021/04/icone-cercle-rempli-noir.png"
+                            width="30px" alt="">
+                    </div>
+                    <div class="breeze"
+                        *ngIf="breeze.indexOf(cell) >= 0 && pits.indexOf(cell) < 0 && cell !== wumpus && cell !== gold">
+                        <img src="https://cdn-icons-png.flaticon.com/512/809/809188.png" width="30px" alt="">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="instructions" data-cy="instructions-game">
+        <h3>Instrucciones</h3> <br>
+        <p>Para moverte utiliza las teclas <img src="https://cdn-icons-png.flaticon.com/512/31/31931.png" width="40px"
+                alt=""> <img src="https://cdn-icons-png.flaticon.com/512/30/30997.png" width="40px" alt=""> <img
+                src="https://cdn-icons-png.flaticon.com/512/31/31838.png" width="40px" alt=""> <img
+                src="https://cdn-icons-png.flaticon.com/512/31/31945.png" width="40px" alt=""></p>
+        <p>Para disparar flechas <img
+                src="https://static.vecteezy.com/system/resources/previews/001/186/991/non_2x/bow-and-arrow-png.png"
+                width="40px" alt="">, haz Click en los cuadros.</p>
+        <p>Para recoger el oro <img src="https://cdn-icons-png.flaticon.com/512/3309/3309977.png" width="50px" alt="">,
+            haz click encima de el y ve a la salida.</p>
+    </div>
+</div>

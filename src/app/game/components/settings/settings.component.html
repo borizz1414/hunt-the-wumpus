@@ -8,22 +8,22 @@
                     <label for="cells">Celdas</label>
                 </div>
 
-                <input type="number" step="4" name="cells" min="0" max="60" formControlName="cells">
+                <input data-cy="cells-input" type="number" step="4" name="cells" min="0" max="60" formControlName="cells">
             </div>
             <div class="formField">
                 <div class="input-label">
                     <label for="pits">Pozos</label>
                 </div>
-                <input type="number" step="4" name="pits" min="0" max="30" formControlName="pits">
+                <input  data-cy="pits-input" type="number" step="4" name="pits" min="0" max="30" formControlName="pits">
             </div>
             <div class="formField">
                 <div class="input-label">
                     <label for="arrows">Flechas</label>
                 </div>
-                <input type="number" step="4" name="arrows" min="0" max="10" formControlName="arrows">
+                <input  data-cy="arrows-input" type="number" step="4" name="arrows" min="0" max="10" formControlName="arrows">
             </div>
             <hr>
-            <button type="submit">Comenzar a jugar</button>
+            <button type="submit" data-cy="btn-start-game">Comenzar a jugar</button>
         </form>
     </div>
 </div>
